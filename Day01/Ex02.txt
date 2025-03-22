@@ -1,0 +1,41 @@
+MariaDB [UOV]> create table Employee;
+ERROR 1113 (42000): A table must have at least 1 column
+MariaDB [UOV]> create table Employee(Physician_ID char(10),Name varchar(20),position varchar(20));
+Query OK, 0 rows affected (0.034 sec)
+
+MariaDB [UOV]> DESC Employee;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| Physician_ID | char(10)    | YES  |     | NULL    |       |
+| Name         | varchar(20) | YES  |     | NULL    |       |
+| position     | varchar(20) | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+3 rows in set (0.046 sec)
+
+MariaDB [UOV]> INSERT INTO Employee VALUES(
+    -> '1','Jone Dorian','Staff Internist'),
+    -> ('2','Ellior Reid','Attending Physiscian'),
+    -> ('3','Chirstopher Turk','Sugical Attending Physiscian'),
+    -> ('4','Percival Cox','Senior Attending Physiscian'),
+    -> ('5','Keith Dudemeister','Md Resident'),
+    -> ('6','Molly Clock','Attending Physician ');
+Query OK, 6 rows affected, 2 warnings (0.024 sec)
+Records: 6  Duplicates: 0  Warnings: 2
+
+MariaDB [UOV]> select * from Employee;
++--------------+-------------------+----------------------+
+| Physician_ID | Name              | position             |
++--------------+-------------------+----------------------+
+| 1            | Jone Dorian       | Staff Internist      |
+| 2            | Ellior Reid       | Attending Physiscian |
+| 3            | Chirstopher Turk  | Sugical Attending Ph |
+| 4            | Percival Cox      | Senior Attending Phy |
+| 5            | Keith Dudemeister | Md Resident          |
+| 6            | Molly Clock       | Attending Physician  |
++--------------+-------------------+----------------------+
+6 rows in set (0.001 sec)
+
+
+
+conclusion:I have learnt about how to create the table and how to add data to database.
