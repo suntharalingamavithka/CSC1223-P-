@@ -187,3 +187,7 @@ MariaDB [uov]> select * from workers;
 6 rows in set (0.001 sec)
 
 MariaDB [uov]>
+
+
+           
+conclusion: I have learnt about how to use primary key ,how to delete the table values, how to delete tha table, how to delete the    data base and how to insert the values other method.
