@@ -1,0 +1,189 @@
+
+Setting environment for using XAMPP for Windows.
+user@DESKTOP-VNS1MPB c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 10
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
+| uov                |
++--------------------+
+6 rows in set (0.001 sec)
+
+MariaDB [(none)]> use uov;
+Database changed
+MariaDB [uov]> create table patients(Patientid int primary key,Name varchar(20),Address varchar(30),Phone_No varchar(10));
+ERROR 1050 (42S01): Table 'patients' already exists
+MariaDB [uov]> DESC patients;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| Patientid | int(11)     | NO   | PRI | NULL    |       |
+| Name      | varchar(20) | YES  |     | NULL    |       |
+| Address   | varchar(30) | YES  |     | NULL    |       |
+| Phone_No  | varchar(10) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+4 rows in set (0.046 sec)
+
+MariaDB [uov]> INSERT INTO Patients(patientid,Name,Address,Phone_No)values
+    -> (100000001,'John Smith','42 Foobav lane','555-0256'),
+    -> (100000002,'Grace Ritchie','37 Snafu Drive','555-0512'),
+    -> (100000003,'Todd Quinla','101 Omgbbq Street','555-1204'),
+    -> (100000004,'Dennis Doe','1100 Fobaz Avenue','555-2048');
+Query OK, 4 rows affected (0.096 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+MariaDB [uov]> select * from patients;
++-----------+---------------+-------------------+----------+
+| Patientid | Name          | Address           | Phone_No |
++-----------+---------------+-------------------+----------+
+| 100000001 | John Smith    | 42 Foobav lane    | 555-0256 |
+| 100000002 | Grace Ritchie | 37 Snafu Drive    | 555-0512 |
+| 100000003 | Todd Quinla   | 101 Omgbbq Street | 555-1204 |
+| 100000004 | Dennis Doe    | 1100 Fobaz Avenue | 555-2048 |
++-----------+---------------+-------------------+----------+
+4 rows in set (0.001 sec)
+
+MariaDB [uov]> delete from patients;
+Query OK, 4 rows affected (0.023 sec)
+
+MariaDB [uov]> select * from patients;
+Empty set (0.001 sec)
+
+MariaDB [uov]> DROP table patients;
+Query OK, 0 rows affected (0.030 sec)
+
+MariaDB [uov]> select * from patients;
+ERROR 1146 (42S02): Table 'uov.patients' doesn't exist
+MariaDB [uov]> create database students;
+Query OK, 1 row affected (0.002 sec)
+
+MariaDB [uov]> show dtabases;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'dtabases' at line 1
+MariaDB [uov]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| students           |
+| test               |
+| uov                |
++--------------------+
+7 rows in set (0.001 sec)
+
+MariaDB [uov]> delete datbase students;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'students' at line 1
+MariaDB [uov]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| students           |
+| test               |
+| uov                |
++--------------------+
+7 rows in set (0.001 sec)
+
+MariaDB [uov]> drop database students;
+Query OK, 0 rows affected (0.059 sec)
+
+MariaDB [uov]> show databases students;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'students' at line 1
+MariaDB [uov]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| test               |
+| uov                |
++--------------------+
+6 rows in set (0.001 sec)
+
+MariaDB [uov]> create table students;
+ERROR 1050 (42S01): Table 'students' already exists
+MariaDB [uov]> create table workers;
+ERROR 1113 (42000): A table must have at least 1 column
+MariaDB [uov]> show tables;
++---------------+
+| Tables_in_uov |
++---------------+
+| employee      |
+| students      |
++---------------+
+2 rows in set (0.001 sec)
+
+MariaDB [uov]> create table students(studentid int primary key,Name varchar(20),Age int,Grade char(1),City varchar(20));
+ERROR 1050 (42S01): Table 'students' already exists
+MariaDB [uov]> create table workers(workerstid int primary key,Name varchar(20),Age int,Grade char(1),City varchar(20));
+Query OK, 0 rows affected (0.039 sec)
+
+MariaDB [uov]> show tables;
++---------------+
+| Tables_in_uov |
++---------------+
+| employee      |
+| students      |
+| workers       |
++---------------+
+3 rows in set (0.001 sec)
+
+MariaDB [uov]> Load data local infile 'C:/Users/user/Desktop/2022asp53-Database/Day02/Ex01.csv'
+    -> into table workers
+    -> fields terminated by '\t'
+    -> lines terminated by '\n'
+    -> (workersid,name,Age,grade,city);
+ERROR 1054 (42S22): Unknown column 'workersid' in 'field list'
+MariaDB [uov]> Load data local infile 'C:/Users/user/Desktop/2022asp53-Database/Day02/Ex01.csv'
+    -> into table workers
+    -> fields terminated by '\t'
+    -> lines terminated by '\n'
+    -> (workerstid,name,Age,grade,city)
+    -> ;
+Query OK, 6 rows affected (0.029 sec)
+Records: 6  Deleted: 0  Skipped: 0  Warnings: 0
+
+MariaDB [uov]> Load data local infile 'C:/Users/user/Desktop/2022asp53-Database/Day02/Ex01.csv'
+    -> into table workers
+    -> fields terminated by '\t'
+    -> lines terminated by '\n'
+    -> (workerstid,name,Age,grade,city);
+Query OK, 0 rows affected, 6 warnings (0.001 sec)
+Records: 6  Deleted: 0  Skipped: 6  Warnings: 6
+
+MariaDB [uov]> select * from workers;
++------------+---------+------+-------+-------------+
+| workerstid | Name    | Age  | Grade | City        |
++------------+---------+------+-------+-------------+
+    |      1 | Alice   |   20 | A     | Newyork
+    |      2 | Bob     |   22 | B     | Chicago
+    |      3 | charlie |   23 | A     | Newyork
+     |     4 | David   |   23 | C     | Boston
+    |      5 | Emma    |   22 | B     | Chicago
+|          6 | Frank   |   20 | A     | Los Angeles |
++------------+---------+------+-------+-------------+
+6 rows in set (0.001 sec)
+
+MariaDB [uov]>
