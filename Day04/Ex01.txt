@@ -415,4 +415,4 @@ MariaDB [uov]> select * from costomer;
 MariaDB [uov]>
 
 
-conclusion: I learnt about
+conclusion: I learnt about how to update table, how to delete particular column.
